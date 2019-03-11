@@ -1,0 +1,79 @@
+---
+title: "GapMinder Analysis"
+author: "rdp2n"
+date: "March 11, 2019"
+output: 
+  html_document: 
+    fig_caption: yes
+    toc: yes
+---
+
+
+```{r}
+library (tidyverse)
+gm <- read_csv("gapminder.csv")
+
+```
+
+# Investigate gm
+
+```{r}
+head(gm)
+```
+# our first plot
+show gdp per capita on x axis and life expectancy on the y axis
+
+```{r}
+ggplot(gm, aes(gdp_per_cap, lifeexp)) + geom_point()
+```
+
+# add color by continent and adding a log scale for gdp
+
+```{r, fig.cap="Life Expectancy by GDP"}
+ggplot(gm, aes(gdp_per_cap, lifeexp)) + 
+  scale_x_log10() +
+  geom_point(aes(col=continent))
+
+```
+Try option echo=FALSE
+
+```{r, fig.cap="Life Expectancy by GDP", echo = FALSE}
+ggplot(gm, aes(gdp_per_cap, lifeexp)) + 
+  scale_x_log10() +
+  geom_point(aes(col=continent))
+
+```
+Try option fig.show="hide"
+
+```{r, fig.cap="Life Expectancy by GDP", fig.show="hide"}
+ggplot(gm, aes(gdp_per_cap, lifeexp)) + 
+  scale_x_log10() +
+  geom_point(aes(col=continent))
+
+```
+Try option include=FALSE
+
+```{r, fig.cap="Life Expectancy by GDP", include=FALSE}
+ggplot(gm, aes(gdp_per_cap, lifeexp)) + 
+  scale_x_log10() +
+  geom_point(aes(col=continent))
+
+```
+
+# Trying outa kable table
+
+```{r}
+head(gm)
+```
+head as a table
+```{r}
+library(knitr)
+kable(head(gm))
+```
+
+
+
+
+
+
+
